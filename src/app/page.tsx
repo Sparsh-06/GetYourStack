@@ -1,7 +1,6 @@
 "use client";
 import * as React from "react";
 
-
 // import DropDown from "./component/DropDown";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -156,6 +155,7 @@ export default function Home() {
     pros: string[];
     cons: string[];
     monetization: string[];
+    usp: string;
     user_flow: { step: string; description: string }[];
     profitablity: { amount: string; reason: string }[];
     marketing: string[];
@@ -335,6 +335,9 @@ export default function Home() {
                   <CardDescription className="text-center">
                     Details of the generated project idea
                   </CardDescription>
+                  <CardDescription className="text-center">
+                    Make sure to download the details as a text file option given at last as it won't be available after this session
+                  </CardDescription>
                 </div>
               </CardHeader>
             </Card>
@@ -356,8 +359,15 @@ export default function Home() {
                 <p className="text-left">{gptResponse.description}</p>
               </CardContent>
             </Card>
-
-            <Card className="col-span-1 md:col-span-2 shadow-md rounded-lg transition-shadow duration-300 hover:shadow-xl">
+            <Card className="shadow-md rounded-lg transition-shadow duration-300 hover:shadow-xl ">
+              <CardContent className="flex flex-col items-center justify-center ">
+                <div className="flex justify-center w-full">
+                  <h3 className="font-bold text-lg text-left">Unique Selling Point:</h3>
+                </div>
+                <p className="text-left">{gptResponse.usp}</p>
+              </CardContent>
+            </Card>
+            <Card className=" shadow-md rounded-lg transition-shadow duration-300 hover:shadow-xl">
               <CardContent>
                 <div className="flex justify-between w-full">
                   <h3 className="font-bold text-lg text-left">Tech Stack:</h3>
@@ -380,6 +390,8 @@ export default function Home() {
                 </ul>
               </CardContent>
             </Card>
+
+            
 
             <Card className="shadow-md rounded-lg transition-shadow duration-300 hover:shadow-xl">
               <CardContent>
@@ -409,7 +421,7 @@ export default function Home() {
                 </ul>
               </CardContent>
             </Card>
-
+            
             <Card className="col-span-1 md:col-span-2 shadow-md rounded-lg transition-shadow duration-300 hover:shadow-xl">
               <CardContent>
                 <div className="flex justify-between w-full">
@@ -420,9 +432,11 @@ export default function Home() {
                 </div>
                 <ul className="list-disc list-inside text-left">
                   {Array.isArray(gptResponse.monetization) &&
-                    gptResponse.monetization.map((monetize: string, index: number) => (
-                      <li key={index}>{monetize}</li>
-                    ))}
+                    gptResponse.monetization.map(
+                      (monetize: string, index: number) => (
+                        <li key={index}>{monetize}</li>
+                      )
+                    )}
                 </ul>
               </CardContent>
             </Card>
@@ -438,9 +452,11 @@ export default function Home() {
                 </div>
                 <ul className="list-disc list-inside text-left">
                   {Array.isArray(gptResponse.marketing) &&
-                    gptResponse.marketing.map((market: string, index: number) => (
-                      <li key={index}>{market}</li>
-                    ))}
+                    gptResponse.marketing.map(
+                      (market: string, index: number) => (
+                        <li key={index}>{market}</li>
+                      )
+                    )}
                   Get ready to explore trending marketing strategies filtered
                   with Artificial Intelligence for your project idea{" "}
                   <Link
